@@ -16,11 +16,13 @@
 ## Deploy
 
 ```bash
-git clone https://github.com/
+git clone https://github.com/okapon1210/exam-viewer-web.git
 cd exam-viewer-web
 yarn --frozen-lockfile
 yarn build
-yarn preview
+git subtree split --prefix dist -b gh-pages
+git push -f origin gh-pages
+git branch -D gh-pages
 ```
 
 ## Author
