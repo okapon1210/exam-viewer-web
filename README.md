@@ -9,7 +9,8 @@
 
 ## Requirements
 
-- Node.js v18.12.1
+- git 2.34.1
+- Node.js 18.12.1
 - yarn 3.3.1
 
 ## Deploy
