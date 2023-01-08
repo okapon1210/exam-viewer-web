@@ -2,6 +2,10 @@
 
 テスト結果のCSVをグラフ化するツール
 
+## Demo
+
+
+
 ## Features
 
 - 学生毎の解答結果から正答率を算出することができます
@@ -13,13 +17,19 @@
 - Node.js 18.12.1
 - yarn 3.3.1
 
-## Deploy
+## Development
 
 ```bash
 git clone https://github.com/okapon1210/exam-viewer-web.git
 cd exam-viewer-web
 yarn --frozen-lockfile
-yarn build
+```
+
+## Deploy
+
+```bash
+git clone https://github.com/okapon1210/exam-viewer-web.git
+cd exam-viewer-web
 git subtree split --prefix dist -b gh-pages
 git push -f origin gh-pages
 git branch -D gh-pages
