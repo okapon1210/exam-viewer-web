@@ -2,7 +2,7 @@ import * as React from 'react'
 import { createRoot } from 'react-dom/client'
 import emotionReset from "emotion-reset";
 import { Global, css } from "@emotion/react";
-import { ExtractPage } from "@/pages/ExtractPage";
+import { ViewerPage } from './pages/ViewerPage';
 
 createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
@@ -18,6 +18,6 @@ createRoot(document.getElementById("root") as HTMLElement).render(
         }
       `}
     />
-    <ExtractPage />
+    <ViewerPage/>
   </React.StrictMode>
 );
