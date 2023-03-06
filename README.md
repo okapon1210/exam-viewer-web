@@ -27,12 +27,29 @@ yarn --frozen-lockfile
 
 ## Deploy
 
+GitHub Pagesを利用する場合
+
 ```bash
 git clone https://github.com/okapon1210/exam-viewer-web.git
 cd exam-viewer-web
 git subtree split --prefix dist -b gh-pages
 git push -f origin gh-pages
 git branch -D gh-pages
+```
+
+Webサーバに直接アップロードする場合
+
+```bash
+git clone https://github.com/okapon1210/exam-viewer-web.git
+cd exam-viewer-web
+cp ./dist ${公開する対象のディレクトリ}
+```
+
+## Other
+
+ディレクトリツリー取得
+```
+tree -I node_modules -h --timefmt "%Y/%m/%d %H:%M" > files.txt
 ```
 
 ## Author
