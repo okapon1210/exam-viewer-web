@@ -73,7 +73,13 @@ export const DigestChart = (props: {
             <XAxis dataKey="times" allowDuplicatedCategory={false} />
             <YAxis />
             {eachSubjectLines}
-            <Tooltip />
+            <Tooltip
+              wrapperStyle={{
+                overflowY: 'scroll',
+                maxHeight: '20vh',
+                pointerEvents: 'auto'
+              }}
+            />
           </LineChart>
         </ResponsiveContainer>
       </Box>
