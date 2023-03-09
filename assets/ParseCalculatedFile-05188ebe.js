@@ -1,0 +1,3 @@
+(function(){"use strict";function i(s){return new TextDecoder().decode(s).replace(/\r\n/g,`
+`).split(`
+`).map(n=>n.split(","))}const t={studentNumber:0,subjectName:1,times:2,questionCount:3,correctCount:4,correctRate:5};self.onmessage=s=>{const{arrBuf:n}=s.data,p=i(n),c=new Map,a=[];p.forEach(e=>{if(e[t.studentNumber]!==""){const l=parseInt(e[t.studentNumber],10),o=e[t.subjectName],u=parseInt(e[t.times],10),m=parseInt(e[t.questionCount],10),d=parseInt(e[t.correctCount],10),C=parseFloat(e[t.correctRate]);a.push({studentNumber:l,subjectName:o,times:u,questionCount:m,correctCount:d,correctRate:C});const r=`${o}_${u}`;c.has(r)||c.set(r,{subjectName:o,times:u})}}),self.postMessage({digests:a,titles:[...c.values()]})}})();
