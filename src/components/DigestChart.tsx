@@ -35,11 +35,22 @@ export const DigestChart = (props: {
 
   const eachSubjectLines = [...digestMap.keys()].map((studentNumber) => {
     const eachSubjectDigests = digestMap.get(studentNumber)?.filter((digest) => digest.subjectName === selectedSubject) || []
+    const sortedEachSubjectDigests = eachSubjectDigests.sort((a, b) => {
+      if (a.subjectName === b.subjectName) {
+        return a.times - b.times
+      }
+
+      if (a.subjectName < b.subjectName) {
+        return -1
+      } else {
+        return 1
+      }
+    })
     const studentNumberString = studentNumber.toString()
     return (
       <Line
         key={studentNumber}
-        data={eachSubjectDigests}
+        data={sortedEachSubjectDigests}
         dot
         dataKey={getCorrectRate}
         name={studentNumberString}

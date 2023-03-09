@@ -1,6 +1,6 @@
-import { DataGrid, GridToolbarExport, GridToolbarContainer } from '@mui/x-data-grid'
-import { Digest } from '@/model/Digest'
-import { DigestChart } from './DigestChart'
+import { DataGrid, GridToolbarExport, GridToolbarContainer, GridColumns, GridRow, unstable_resetCleanupTracking } from '@mui/x-data-grid'
+import { Digest, Title } from '@/model/Digest'
+import { DigestChart } from '@/components/DigestChart'
 
 const customToolbar = () => {
   return (
@@ -15,22 +15,34 @@ type GridRow = {
 }
 
 export const DigestGrids = (props: {
-  rawTitles: string[]
+  titles: Title[]
   digestMap: Map<number, Digest[]>
 }) => {
-  const { rawTitles, digestMap } = props
+  const { titles, digestMap } = props
 
-  const gridColumns = [
+  const sortedTitles = titles.sort((a, b) => {
+    if (a.subjectName === b.subjectName) {
+      return a.times - b.times
+    }
+
+    if (a.subjectName < b.subjectName) {
+      return -1
+    } else {
+      return 1
+    }
+  })
+
+  const gridColumns: GridColumns<GridRow> = [
     {
       field: "id",
       headerName: "学籍番号",
     },
-    ...rawTitles.map((rawTitle) => ({
-      field: rawTitle,
-      headerName: rawTitle,
+    ...sortedTitles.map((title) => ({
+      field: `${title.subjectName}_${title.times}`,
+      headerName: `${title.subjectName}_${title.times}`,
     })),
     {
-      field: "ave",
+      field: "average",
       headerName: "平均",
     },
   ]
@@ -45,7 +57,7 @@ export const DigestGrids = (props: {
       allQuestionCount += digest.questionCount
       allCorrectCount += digest.correctCount
     })
-    row['ave'] = allCorrectCount / allQuestionCount
+    row["average"] = allCorrectCount / allQuestionCount
     
     return row
   })

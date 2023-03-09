@@ -9,5 +9,7 @@ export default defineConfig({
       '@/': `${__dirname}/src/`
     }
   },
-  plugins: [react()],
+  plugins: [react({
+    jsxImportSource: "@emotion/react",
+  })],
 })

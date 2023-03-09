@@ -21,3 +21,13 @@ export class Digest {
     this.correctRate = correctRate
   }
 }
+
+export type Title = {
+  subjectName: string
+  times: number
+}
+
+export type ReceiveData = {
+  titles: Title[]
+  digests: Digest[]
+}

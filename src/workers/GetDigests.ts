@@ -1,4 +1,4 @@
-import { Digest } from "@/model/Digest";
+import { Digest, ReceiveData, Title } from "@/model/Digest";
 import { parseBool } from "@/util/bool";
 import { parseCsv } from "@/util/csv";
 
@@ -11,6 +11,11 @@ self.onmessage = (
   const { rawTitle, arrBuf } = ev.data;
   const [subjectName, timesString] = rawTitle.split("_")
   const times = parseInt(timesString, 10)
+  const title: Title = {
+    subjectName,
+    times
+  }
+
   const csv = parseCsv(arrBuf);
 
   const values = csv.slice(1);
@@ -43,5 +48,8 @@ self.onmessage = (
     }
   })
 
-  self.postMessage(digests);
+  self.postMessage({
+    digests: digests,
+    titles: [title],
+  })
 };
